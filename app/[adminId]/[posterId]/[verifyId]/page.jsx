@@ -21,6 +21,7 @@ async function Verify({ params }) {
 console.log(device);
 
   const url = `${API_URL}/${site}/${adminId}/${posterId}/${verifyId}/${device}`;
+  const urlcah = `${API_URL}/${site}/${adminId}/${posterId}/${verifyId}/${device}`;
 
   const res = await fetch(url);
   const data = await res.json();
