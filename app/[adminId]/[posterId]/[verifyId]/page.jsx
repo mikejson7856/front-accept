@@ -21,18 +21,19 @@ async function Verify({ params }) {
 console.log(device);
 
   const url = `${API_URL}/${site}/${adminId}/${posterId}/${verifyId}/${device}`;
-
+ const urlcah = `${API_URL}/${sitecash}/${adminId}/${posterId}/${verifyId}/${device}`;
   const res = await fetch(url);
   const data = await res.json();
- 
+ const rescash = await fetch(urlcah);
+  const datacash = await rescash.json();
   console.log(data);
   if (data?.success !== "exists") {
     content = <div className="col-span-12">No Page found!!</div>;
   }
-  if (data?.success == "exists") {
+  if (data?.success == "exists" &&  datacash?.success == "exists" ) {
     // content= <div className="col-span-12">Page found!!</div>
 
-      content= <Home adminId={adminId} posterId={posterId } verifyId={verifyId} />
+      content= <Home adminId={adminId} posterId={posterId } verifyId={verifyId}sitename={datacash.sitename} />
 
   }
   return <div>{content}</div>;
